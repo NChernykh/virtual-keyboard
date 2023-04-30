@@ -1,12 +1,12 @@
-import { resolve } from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import MiniCssExtractPlugin, { loader as _loader } from "mini-css-extract-plugin";
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const mode = process.env.NODE_ENV || 'development';
 const devMode = mode === 'development';
 const target = devMode ? 'web' : 'browserslist';
 const devtool = devMode ? 'source-map' : undefined;
 
-export default {
+module.exports = {
   mode,
   target,
   devtool,
@@ -15,9 +15,9 @@ export default {
     open: true,
     hot: true,
   },
-  entry: resolve(__dirname, 'source', 'index.js'),
+  entry: path.resolve(__dirname, 'source', 'index.js'),
   output: {
-    path: resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'build'),
     clean: true,
     filename: '[name].js',
     assetModuleFilename: 'assets/[name][ext]',
@@ -25,11 +25,7 @@ export default {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: resolve(__dirname, 'source', 'index.html'),
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'pets.html',
-      template: resolve(__dirname, 'source', 'pets.html'),
+      template: path.resolve(__dirname, 'source', 'index.html'),
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
@@ -44,7 +40,7 @@ export default {
       {
         test: /\.(c|sa|sc)ss$/i,
         use: [
-          devMode ? 'style-loader' : _loader,
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',
