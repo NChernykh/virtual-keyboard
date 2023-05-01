@@ -2,9 +2,9 @@ import {
   keyDownHandler, keyUpHandler, mouseDownHandler,
 } from './handlers';
 
-function addEventListenersOnButtons() {
+function eventsOnButtons() {
   document.addEventListener('keydown', keyDownHandler);
   document.addEventListener('keyup', keyUpHandler);
   document.addEventListener('mousedown', mouseDownHandler);
 }
-export default addEventListenersOnButtons;
+export default eventsOnButtons;

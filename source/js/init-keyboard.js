@@ -1,4 +1,4 @@
-import addEventListenersOnButtons from './events';
+import eventsOnButtons from './events';
 import { isFnValue, correctTextInFnBtns } from './key-codes';
 import en from './english-key';
 import ru from './russian-key';
@@ -19,23 +19,21 @@ function createElement(
   if (otherAttr && otherAttrValue) { el.setAttribute(otherAttr, otherAttrValue); }
   return el;
 }
-//document.head.insertAdjacentHTML('beforeend', '<link rel="shortcut icon" href="keyboard.ico" type="image/x-icon">');
+
 document.title = 'Virtual Keyboard';
 document.body.append(createElement('h1', 'RSS Виртуальная клавиатура', 'title'));
 document.body.append(createElement('textarea', null, 'textarea', 'id', 'textarea', 'placeholder', 'Print me'));
 
 function defLangEn(str) {
   if (localStorage.lang === str) return 'langEn';
-
   return 'hidden';
 }
 
 function createMarkup() {
   document.body.append(createElement('div', null, 'keyboard'));
-  const ENG = en.flat(1);
-  const RUS = ru.flat(1);
+  const ENG = en.flat();
+  const RUS = ru.flat();
 
-  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < ENG.length; i++) {
     const elemEn = ENG[i];
     const elemRu = RUS[i];
@@ -52,7 +50,7 @@ function createMarkup() {
       'div',
       [
         createElement(
-          'span',
+          'div',
           [
             createElement('span', `${(isFnValue(elemEn.code)) ? (enTextObj.key || enTextObj) : ruTextObj.key}`, `caseDown ${defLangEn('ru')}`),
             createElement('span', `${(isFnValue(elemEn.code)) ? enTextObj.key || enTextObj : ((ruTextObj.hasOwnProperty('secondValue')) ? ruTextObj.secondValue : ruTextObj.key.toUpperCase())}`, 'caseUp hidden'),
@@ -63,7 +61,7 @@ function createMarkup() {
         ),
 
         createElement(
-          'span',
+          'div',
           [
             createElement('span', `${enTextObj.key || enTextObj}`, `caseDown ${defLangEn('en')}`),
             createElement('span', `${(isFnValue(elemRu.code)) ? enTextObj.key || enTextObj : ((enTextObj.hasOwnProperty('secondValue')) ? enTextObj.secondValue : enTextObj.key.toUpperCase())}`, 'caseUp hidden'),
@@ -86,7 +84,7 @@ function createMarkup() {
 
 function init() {
   createMarkup();
-  addEventListenersOnButtons();
+  eventsOnButtons();
 }
 
 init();
