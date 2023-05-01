@@ -1,0 +1,172 @@
+html,
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1rem;
+
+  @media (max-width: 500px) {
+    font-size: 1rem;
+  }
+}
+
+.title {
+  color: $color-tory-blue;
+}
+
+.textarea {
+  width: 65%;
+  height: 20rem;
+  border: 2px solid $color-ebony;
+  border-radius: 5px;
+  font-size: 3rem;
+
+  @media (max-width: 700px) {
+    height: 10rem;
+    font-size: 1rem;
+  }
+}
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(15, minmax(4.8rem, auto));
+  grid-template-rows: repeat(5, 4.8rem);
+  grid-gap: 0.5rem 0.5rem;
+  justify-content: center;
+  justify-items: stretch;
+  padding: 1rem;
+  width: 70%;
+  min-width: fit-content;
+  height: auto;
+  background-color: $color-wild-blue-yonder;
+  border: 2px solid $color-ebony;
+  border-radius: 5px;
+
+  @media (max-width: 870px) {
+    grid-template-columns: repeat(15, minmax(1.5rem, auto));
+    grid-template-rows: repeat(5, 1.5rem);
+    grid-gap: 1vmin;
+  }
+}
+
+.btn {
+  min-width: 4.8rem;
+  min-height: 4.8rem;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color-blue-zodiac;
+  color: $color-default-white;
+  font-size: 1.8rem;
+  user-select: none;
+  transition: all 0.5s ease;
+
+  @media (max-width: 870px) {
+    min-width: 1rem;
+    min-height: 1rem;
+    padding: 2px;
+    font-size: 1rem;
+
+    &[data="Space"] {
+      grid-column: 4/11;
+      width: auto;
+    }
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active,
+  &.active {
+    border-radius: 50%;
+    background-color: $color-governor-bay;
+  }
+}
+
+.btn[data="ArrowLeft"] {
+  background-image: url("./img/arrow.svg");
+  background-size: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.btn[data="ArrowRight"] {
+  background-image: url("./img/arrow.svg");
+  transform: rotate(180deg);
+  background-size: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.btn[data="ArrowUp"] {
+  background-image: url("./img/arrow.svg");
+  transform: rotate(90deg);
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center center;
+}
+
+.btn[data="ArrowDown"] {
+  transform: rotate(-90deg);
+  background-image: url("./img/arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center center;
+}
+
+.btn[data="Backspace"] {
+  grid-row: 1;
+  grid-column: 14/16;
+}
+
+.btn[data="Enter"] {
+  grid-column: 14/16;
+}
+
+.btn[data="Delete"] {
+  grid-column: 15/16;
+  grid-row: 2;
+}
+
+.btn[data="CapsLock"] {
+  grid-column: 1/3;
+  grid-row: 3;
+}
+
+.btn[data="ShiftLeft"] {
+  grid-column: 1/3;
+  grid-row: 4;
+}
+
+.btn[data="ShiftRight"] {
+  grid-column: 14/16;
+  grid-row: 4;
+}
+
+.btn[data="Space"] {
+  grid-column: 4/11;
+  width: 100%;
+}
+
+.fn {
+  background-color: $color-bunting;
+}
+
+.hidden {
+  display: none;
+}
