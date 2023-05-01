@@ -124,6 +124,10 @@ function changeLanguage() {
 }
 
 function initKeyboard() {
+  if (!localStorage.lang) {
+    localStorage.setItem('lang', 'en');
+  }
+  
   createMarkup();
   changeLanguage();
   eventsOnButtons();
