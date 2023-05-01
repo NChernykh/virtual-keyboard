@@ -22,8 +22,13 @@ function createElement(
 //document.head.insertAdjacentHTML('beforeend', '<link rel="shortcut icon" href="keyboard.ico" type="image/x-icon">');
 document.title = 'Virtual Keyboard';
 document.body.append(createElement('h1', 'RSS Виртуальная клавиатура', 'title'));
-document.body.append(createElement('textarea', null, 'main__textarea', 'id', 'textatea', 'placeholder', 'What have your mind?'));
+document.body.append(createElement('textarea', null, 'textarea', 'id', 'textarea', 'placeholder', 'Print me'));
 
+function defLangEn(str) {
+  if (localStorage.lang === str) return 'langEn';
+
+  return 'hidden';
+}
 
 function createMarkup() {
   document.body.append(createElement('div', null, 'keyboard'));
@@ -87,4 +92,4 @@ function init() {
 init();
 
 document.body.append(createElement('p', 'Клавиатура создана в операционной системе Windows'));
-document.body.append(createElement('p', 'Смена языка:  левый Alt + Ctrl'));
+document.body.append(createElement('p', 'Для переключения языка комбинация: левыe ctrl + alt'));

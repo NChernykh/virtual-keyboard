@@ -17,7 +17,7 @@ export function keyboardToUpperCase() {
   }
 }
 function addSymbol(symbol) {
-  const textarea = document.querySelector('.main__textarea');
+  const textarea = document.querySelector('.textarea');
   const newText = textarea.value.split('');
   const positionCursor = textarea.selectionEnd;
   newText.splice(positionCursor, 0, symbol);
@@ -26,7 +26,7 @@ function addSymbol(symbol) {
   textarea.selectionEnd = positionCursor + 1;
 }
 function pressBtn(val) {
-  const textarea = document.querySelector('.main__textarea');
+  const textarea = document.querySelector('.textarea');
   const newText = textarea.value.split('');
   const positionCursor = textarea.selectionEnd;
 
@@ -55,7 +55,7 @@ function pressBtn(val) {
   } else if (val === 'ArrowRight') {
     addSymbol('\u2BC8');
   } else if (val === 'CapsLock') {
-    document.querySelector(`[data=${val}]`).classList.toggle('btn_active');
+    document.querySelector(`[data=${val}]`).classList.toggle('active');
     keyboardToUpperCase();
   }
 }
@@ -79,7 +79,7 @@ export function keyDownHandler(e) {
     e.preventDefault();
     if (!document.querySelector(`[data=${e.code}]`)) return;
     const currEl = document.querySelector(`[data=${e.code}]`);
-    if (e.code !== 'CapsLock') { currEl.classList.add('btn_active'); }
+    if (e.code !== 'CapsLock') { currEl.classList.add('active'); }
 
     if (e.key === 'Shift' && !e.repeat) {
       // Обрабатываю нажатие Shift здесь т.к. необходимо проверять условие e.repeat-зажатие кнопки
@@ -99,12 +99,12 @@ export function keyUpHandler(e) {
   try {
     if (!document.querySelector(`[data=${e.code}]`)) return;
     if (e.key === 'Shift') {
-      document.querySelector(`[data=${e.code}]`).classList.remove('btn_active');
+      document.querySelector(`[data=${e.code}]`).classList.remove('active');
       keyboardToUpperCase();
     } else if (e.key === 'CapsLock') {
       return;
     } else {
-      document.querySelector(`[data=${e.code}]`).classList.remove('btn_active');
+      document.querySelector(`[data=${e.code}]`).classList.remove('active');
     }
   } catch (err) {
     console.error('Отпускание кнопки, которой нет на Клавиатуре', err);
